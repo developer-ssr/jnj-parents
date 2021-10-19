@@ -78,7 +78,7 @@ class ProcessController extends Controller
         $parent->update([
             'is_complete' => true
         ]);
-        return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step2_links[$parent->country]}")
+        return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step2_links[$parent->country]}");
     }
 
     public function lack($id, $days = 2)
