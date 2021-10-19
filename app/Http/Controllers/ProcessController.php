@@ -61,7 +61,7 @@ class ProcessController extends Controller
         $days = Carbon::parse($parent->visited_at)->diffInDays(now(), false);
         $lacking_days = 14 - $days;
         if ($lacking_days <= 0) {
-            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/entry/{$this->step2_links[$parent->country]}/?id={$id}&" . http_build_query([
+            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/entry/{$this->step2_links[$parent->country]}/?id={$id}&qr=1&" . http_build_query([
                 'email' => $parent->email,
                 'clinic' => $parent->clinic,
                 'visited' => $parent->visited_at
