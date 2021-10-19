@@ -34,7 +34,7 @@ class SurveyCreated extends Mailable
         return $this->markdown('emails.survey.created')
         ->subject("Myopia Study")
         ->with([
-            'url' => "https://jnj.splitsecondsurveys.co.uk/parx/entry?qr=1&id=" . $this->parent->uid
+            'url' => "https://jnj.splitsecondsurveys.co.uk/parx/entry?id=" . $this->parent->uid
         ]);
     }
 }
