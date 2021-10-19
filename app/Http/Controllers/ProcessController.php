@@ -45,13 +45,13 @@ class ProcessController extends Controller
         $agent = new Agent();
         $browser = $agent->browser();
         $platform = $agent->platform();
-        return collect([
+        return [
             'ip' => $request->ip(),
             'browser' => $browser . " " . $agent->version($browser),
             'device' => ($agent->isDesktop() ? 'Desktop ' : 'Mobile ') . $agent->device(),
             'platform' => $platform . " " . $agent->version($platform),
             'url' => $request->fullUrl()
-        ]);
+        ];
     }
 
     public function entry(Request $request)
@@ -81,7 +81,10 @@ class ProcessController extends Controller
         $days = Carbon::parse($parent->visited_at)->diffInDays(now(), false);
         $lacking_days = 14 - $days;
         if ($lacking_days <= 0) {
-            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step2_links[$parent->country]}/?id={$id}&" . http_build_query([
+            $parent->update([
+                'info' => collect($parent->info)->merge(['id' => $request->id])
+            ]);
+            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step2_links[$parent->country]}/?id={$request->id}&" . http_build_query([
                 'email' => $parent->email,
                 'clinic' => $parent->clinic,
                 'visited' => $parent->visited_at

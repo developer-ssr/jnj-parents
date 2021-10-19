@@ -16,6 +16,7 @@ class Par extends Model
 
     protected $casts = [
         'is_complete' => 'boolean',
-        'visited_at' => 'date'
+        'visited_at' => 'date',
+        'info' => 'array'
     ];
 }
