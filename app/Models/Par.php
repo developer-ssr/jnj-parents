@@ -14,11 +14,8 @@ class Par extends Model
 
     protected $guarded = [];
 
-    protected $dates = [
-        'visited_at'
-    ];
-
     protected $casts = [
-        'is_complete' => 'boolean'
+        'is_complete' => 'boolean',
+        'visited_at' => 'date'
     ];
 }
