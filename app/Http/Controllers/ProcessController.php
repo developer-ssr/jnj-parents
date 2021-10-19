@@ -96,8 +96,8 @@ class ProcessController extends Controller
 
     public function complete(Request $request)
     {
-        $id = $request->id;
-        $parent = Par::where('uid', $id)->first();
+        $email = $request->email;
+        $parent = Par::where('email', $email)->first();
         $parent->update([
             'is_complete' => true
         ]);
