@@ -32,5 +32,11 @@ Route::get('/process', [ProcessController::class, 'index']);
 // });
 
 Route::get('/check', [ProcessController::class, 'lack']);
+
+//via email entry link
 Route::get('entry', [ProcessController::class, 'entry']);
+
+//via QR code 2
+Route::get('entry2', [ProcessController::class, 'entry2']);
+
 Route::get('/complete', [ProcessController::class, 'complete']);

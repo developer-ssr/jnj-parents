@@ -71,6 +71,26 @@ class ProcessController extends Controller
         }
     }
 
+
+    // via QR code 2
+    public function entry2(Request $request)
+    {
+        $email = $request->q1;
+        $parent = Par::where('email', $email)->orderBy('id', 'desc')->first();
+        $id = $parent->uid;
+        $days = Carbon::parse($parent->visited_at)->diffInDays(now(), false);
+        $lacking_days = 14 - $days;
+        if ($lacking_days <= 0) {
+            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step2_links[$parent->country]}/?id={$id}&" . http_build_query([
+                'email' => $parent->email,
+                'clinic' => $parent->clinic,
+                'visited' => $parent->visited_at
+            ]));
+        } else {
+            return redirect("https://express.splitsecondsurveys.co.uk/engine/?code=fxOmcL12MF&preview=1&id={$id}&days={$lacking_days}");
+        }
+    }
+
     public function complete(Request $request)
     {
         $id = $request->id;
