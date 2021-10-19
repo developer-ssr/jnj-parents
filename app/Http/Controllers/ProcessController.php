@@ -50,7 +50,7 @@ class ProcessController extends Controller
             'browser' => $browser . " " . $agent->version($browser),
             'device' => ($agent->isDesktop() ? 'Desktop ' : 'Mobile ') . $agent->device(),
             'platform' => $platform . " " . $agent->version($platform),
-            'url' => $request->url()
+            'url' => $request->fullUrl()
         ]);
     }
 
