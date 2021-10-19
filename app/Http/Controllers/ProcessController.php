@@ -58,6 +58,9 @@ class ProcessController extends Controller
     {
         $id = $request->id;
         $parent = Par::where('uid', $id)->first();
+        if ($parent->is_complete) {
+            return redirect("https://www.seeyourabiliti.com");
+        }
         $days = Carbon::parse($parent->visited_at)->diffInDays(now(), false);
         $lacking_days = 14 - $days;
         if ($lacking_days <= 0) {
@@ -78,6 +81,9 @@ class ProcessController extends Controller
         $email = $request->q1;
         $parent = Par::where('email', $email)->orderBy('id', 'desc')->first();
         $id = $parent->uid;
+        if ($parent->is_complete) {
+            return redirect("https://www.seeyourabiliti.com");
+        }
         $days = Carbon::parse($parent->visited_at)->diffInDays(now(), false);
         $lacking_days = 14 - $days;
         if ($lacking_days <= 0) {
