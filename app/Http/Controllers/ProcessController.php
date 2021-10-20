@@ -24,7 +24,7 @@ class ProcessController extends Controller
     public function index(Request $request)
     {
         $email = $request->q1;
-        $date = Carbon::parse($request->q2);
+        $date = Carbon::createFromFormat('d/m/Y', $request->q2);
         $clinic = $request->q3;
 
         $parent = Par::create([
