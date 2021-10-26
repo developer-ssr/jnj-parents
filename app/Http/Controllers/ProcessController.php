@@ -48,9 +48,7 @@ class ProcessController extends Controller
             return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step1_links[$request->country]}?" . http_build_query($request->all()));
         } else {
             Http::get("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step1_links[$request->country]}?" . http_build_query($request->all()));
-            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/entry/{$this->step2_links[$parent->country]}/?id={$request->id}&qr=1&" . http_build_query([
-                //'email' => $parent->email,
-                //'clinic' => $parent->clinic,
+            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/entry/{$this->step2_links[$parent->country]}/?id={$request->id}&qr=1&" .http_build_query([
                 'visited' => $parent->visited_at
             ]));
         }
@@ -93,10 +91,10 @@ class ProcessController extends Controller
     // via QR code 2
     public function entry2(Request $request)
     {
-        $email = $request->q1 ?? null;
+        $email = $request->q1;
         $id = $request->id;
 
-        $parent = $email ? Par::where('email', $email)->first() : null;
+        $parent = Par::where('email', $email)->first();
         if (is_null($parent)) {
             $parent = Par::where('uid', $id)->first();
             if (is_null($parent)) {
