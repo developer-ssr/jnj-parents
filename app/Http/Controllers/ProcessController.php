@@ -152,9 +152,19 @@ class ProcessController extends Controller
         $email = $request->email;
         $parent = Par::where('email', $email)->first();
         $parent->update([
-            'is_complete' => true
+            'is_complete' => true,
+            'status' => 'complete'
         ]);
         return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step3_links[$parent->country]}?" . http_build_query($request->all()));
+    }
+
+    public function so(Request $request)
+    {
+        $parent = Par::where('uid', $request->id)->first();
+        $parent->update([
+            'status' => 'so'
+        ]);
+        return redirect("https://fluent.splitsecondsurveys.co.uk/engine/disqualify/{$this->step3_links[$parent->country]}/so?" . http_build_query($request->all()));
     }
 
     public function lack($id, $days = 2)

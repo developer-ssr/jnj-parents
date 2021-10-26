@@ -40,3 +40,4 @@ Route::get('entry', [ProcessController::class, 'entry']);
 Route::get('entry2', [ProcessController::class, 'entry2']);
 
 Route::get('/complete', [ProcessController::class, 'complete']);
+Route::get('/so', [ProcessController::class, 'so']);
