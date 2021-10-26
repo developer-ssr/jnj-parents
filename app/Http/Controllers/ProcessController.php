@@ -98,7 +98,7 @@ class ProcessController extends Controller
         if (is_null($parent)) {
             $parent = Par::where('uid', $id)->first();
             if (is_null($parent)) {
-                return redirect("https://express.splitsecondsurveys.co.uk/engine?code=dGerRlvJYR&ID={$id}");
+                return redirect("https://express.splitsecondsurveys.co.uk/engine?code=dGerRlvJYR&id={$id}");
             }
             $parent->update([
                 'email' => $email
