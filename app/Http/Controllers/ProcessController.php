@@ -59,13 +59,13 @@ class ProcessController extends Controller
         $agent = new Agent();
         $browser = $agent->browser();
         $platform = $agent->platform();
-        return [
+        return collect([
             'ip' => $request->ip(),
             'browser' => $browser . " " . $agent->version($browser),
             'device' => ($agent->isDesktop() ? 'Desktop ' : 'Mobile ') . $agent->device(),
             'platform' => $platform . " " . $agent->version($platform),
             'url' => $request->fullUrl()
-        ];
+        ])->merge($request->all())->toArray();
     }
 
     public function entry(Request $request)
