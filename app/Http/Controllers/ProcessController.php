@@ -154,7 +154,7 @@ class ProcessController extends Controller
         $parent->update([
             'is_complete' => true
         ]);
-        return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step2_links[$parent->country]}?" . http_build_query($request->all()));
+        return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step3_links[$parent->country]}?" . http_build_query($request->all()));
     }
 
     public function lack($id, $days = 2)
