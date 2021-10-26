@@ -6,6 +6,7 @@ use App\Mail\SurveyCreated;
 use App\Models\Par;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
 use Jenssegers\Agent\Agent;
@@ -14,30 +15,45 @@ class ProcessController extends Controller
 {
 
     private $step2_links = [
-        'sg' => 'V84'
+        'sg' => 'V84',
+        'us' => 'nh1'
     ];
 
     private $step1_links = [
-        'sg' => 'FKC'
+        'sg' => 'FKC',
+        'us' => 'Sm8'
+    ];
+
+    private $step3_links = [
+        'sg' => '',
+        'us' => '4NL'
     ];
 
     public function index(Request $request)
     {
-        $email = $request->q1;
-        $date = Carbon::createFromFormat('d/m/Y', $request->q2);
-        $clinic = $request->q3;
+        $email = $request->q15 ?? null;
+        $date = Carbon::createFromFormat('d/m/Y', $request->q14);
+        //$clinic = $request->q3;
 
         $parent = Par::create([
-            'uid' => Uuid::uuid4(),
+            'uid' => $request->id,
             'email' => $email,
             'visited_at' => $date,
-            'clinic' => $clinic,
+            //'clinic' => $clinic,
             'info' => $this->getClientInfo($request),
             'country' => $request->country
         ]);
-
-        Mail::to($email)->send(new SurveyCreated($parent));
-        return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step1_links[$request->country]}?" . http_build_query($request->all()));
+        if (!is_null($email)) {
+            Mail::to($email)->send(new SurveyCreated($parent));
+            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step1_links[$request->country]}?" . http_build_query($request->all()));
+        } else {
+            Http::get("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step1_links[$request->country]}?" . http_build_query($request->all()));
+            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/entry/{$this->step2_links[$parent->country]}/?id={$request->id}&qr=1&" . http_build_query([
+                //'email' => $parent->email,
+                //'clinic' => $parent->clinic,
+                'visited' => $parent->visited_at
+            ]));
+        }
     }
 
     private function getClientInfo(Request $request)
@@ -64,9 +80,8 @@ class ProcessController extends Controller
         $days = Carbon::parse($parent->visited_at)->diffInDays(now(), false);
         $lacking_days = 14 - $days;
         if ($lacking_days <= 0) {
-            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/entry/{$this->step2_links[$parent->country]}/?id={$id}&qr=1&" . http_build_query([
+            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/entry/{$this->step3_links[$parent->country]}/?id={$id}&source=email&" . http_build_query([
                 'email' => $parent->email,
-                'clinic' => $parent->clinic,
                 'visited' => $parent->visited_at
             ]));
         } else {
@@ -78,26 +93,59 @@ class ProcessController extends Controller
     // via QR code 2
     public function entry2(Request $request)
     {
-        $email = $request->q1;
-        $parent = Par::where('email', $email)->orderBy('id', 'desc')->first();
-        $id = $parent->uid;
-        if ($parent->is_complete) {
-            return redirect("https://www.seeyourabiliti.com");
-        }
-        $days = Carbon::parse($parent->visited_at)->diffInDays(now(), false);
-        $lacking_days = 14 - $days;
-        if ($lacking_days <= 0) {
+        $email = $request->q1 ?? null;
+        $id = $request->id;
+
+        $parent = $email ? Par::where('email', $email)->first() : null;
+        if (is_null($parent)) {
+            $parent = Par::where('uid', $id)->first();
+            if (is_null($parent)) {
+                return redirect("https://www.seeyourabiliti.com");
+            }
             $parent->update([
-                'info' => collect($parent->info)->merge(['id' => $request->id])
+                'email' => $email
             ]);
-            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step2_links[$parent->country]}/?id={$request->id}&" . http_build_query([
+            return redirect("https://fluent.splitsecondsurveys.co.uk/engine/entry/{$this->step3_links[$parent->country]}/?id={$request->id}&qr=1&" . http_build_query([
                 'email' => $parent->email,
-                'clinic' => $parent->clinic,
                 'visited' => $parent->visited_at
             ]));
         } else {
-            return redirect("https://express.splitsecondsurveys.co.uk/engine/?code=fxOmcL12MF&preview=1&id={$id}&days={$lacking_days}");
+            if ($parent->is_complete) {
+                return redirect("https://www.seeyourabiliti.com");
+            }
+            $days = Carbon::parse($parent->visited_at)->diffInDays(now(), false);
+            $lacking_days = 14 - $days;
+            if ($lacking_days <= 0) {
+                Http::get("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step2_links[$parent->country]}?id={$request->id}");
+                return redirect("https://fluent.splitsecondsurveys.co.uk/engine/entry/{$this->step3_links[$parent->country]}?id={$parent->uid}&" . http_build_query([
+                    'email' => $parent->email,
+                    'visited' => $parent->visited_at,
+                    'qr' => 2
+                ]));
+            } else {
+                return redirect("https://express.splitsecondsurveys.co.uk/engine/?code=fxOmcL12MF&id={$id}&days={$lacking_days}");
+            }
         }
+
+        // $parent = $email ? Par::where('email', $email)->orderBy('id', 'desc')->first() : null;
+        // $id = $parent->uid;
+        // if ($parent->is_complete) {
+        //     return redirect("https://www.seeyourabiliti.com");
+        // }
+        // $days = Carbon::parse($parent->visited_at)->diffInDays(now(), false);
+        // $lacking_days = 14 - $days;
+        // if ($lacking_days <= 0) {
+        //     $parent->update([
+        //         'info' => collect($parent->info)->merge(['id' => $request->id])
+        //     ]);
+        //     return redirect("https://fluent.splitsecondsurveys.co.uk/engine/complete/{$this->step2_links[$parent->country]}/?id={$request->id}&" . http_build_query([
+        //         'email' => $parent->email,
+        //         //'clinic' => $parent->clinic,
+        //         'visited' => $parent->visited_at
+        //     ]));
+        // } else {
+        //     return redirect("https://express.splitsecondsurveys.co.uk/engine/?code=fxOmcL12MF&preview=1&id={$id}&days={$lacking_days}");
+        // }
     }
 
     public function complete(Request $request)
