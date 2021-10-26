@@ -94,11 +94,11 @@ class ProcessController extends Controller
         $email = $request->q1;
         $id = $request->id;
 
-        $parent = Par::where('email', $email)->first();
+        $parent = Par::where('email', $email)->orderBy('id', 'desc')->first();
         if (is_null($parent)) {
             $parent = Par::where('uid', $id)->first();
             if (is_null($parent)) {
-                return redirect("https://www.seeyourabiliti.com");
+                return redirect("https://express.splitsecondsurveys.co.uk/engine?code=dGerRlvJYR&ID={$ID}");
             }
             $parent->update([
                 'email' => $email
