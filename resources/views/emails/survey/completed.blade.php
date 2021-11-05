@@ -1,7 +1,7 @@
 @component('mail::message')
-# Dear $name,
+# Dear {{ $name }},
 
-You have successfully completed survey $num: $survey
+You have successfully completed survey {{ $num }}: {{ $survey }}
 
 Many thanks for your help and support.
 
