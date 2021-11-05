@@ -35,7 +35,7 @@ class SurveyCompleted extends Mailable
         ->with([
             'name' => $this->data['a2_1'],
             'survey' => $this->data['survey'],
-            'num' => $this->data['survey']
+            'num' => $this->data['num']
         ]);
     }
 }

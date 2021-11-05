@@ -20,7 +20,7 @@ class JnjOfficeSurveyController extends Controller
             1 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/XWp/?id=' . $request->id,
             2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/XWp/?id= ' . $request->id
         ];
-        $data = collect($request->all())->merge(['survey' => $survey[$request->survey]])->toArray();
+        $data = collect($request->all())->merge(['survey' => $survey[$request->survey], 'num' => $request->survey])->toArray();
         Mail::to("crisjohnreytarpin@gmail.com")->send(new SurveyCompleted($data));
     }
 }
