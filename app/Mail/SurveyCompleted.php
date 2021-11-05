@@ -33,7 +33,7 @@ class SurveyCompleted extends Mailable
         return $this->markdown('emails.survey.completed')
         ->subject("Myopia Study")
         ->with([
-            'name' => $this->data['a2_1'],
+            'name' => $this->data['a2_1'] ?? $this->data['h2_1'],
             'survey' => $this->data['survey'],
             'num' => $this->data['num']
         ]);
