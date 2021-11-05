@@ -21,6 +21,11 @@ class JnjOfficeSurveyController extends Controller
             2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/XWp/?id= ' . $request->id
         ];
         $data = collect($request->all())->merge(['survey' => $survey[$request->survey], 'num' => $request->survey])->toArray();
-        Mail::to("crisjohnreytarpin@gmail.com")->send(new SurveyCompleted($data));
+        Mail::to($request->a2_2)->send(new SurveyCompleted($data));
+        $mails = $emails[$request->country];
+        //Mail::to($mails[0])->send(new SurveyCompleted($data));
+        //Mail::to($mails[1])->send(new SurveyCompleted($data));
+        //Mail::to($mails[2])->send(new SurveyCompleted($data));
+        return redirect("https://www.seeyourabiliti.com/professionals");
     }
 }
