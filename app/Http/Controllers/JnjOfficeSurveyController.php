@@ -13,7 +13,24 @@ class JnjOfficeSurveyController extends Controller
         $country = $request->country;
         $emails = [
             'sg' => [
-                'jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'
+                'jason1993tan@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'pearlsoptical@singnet.com.sg' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'eeqwtiffany@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'tsr729@hotmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'ejseow@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'jianing1278@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'Cfchau.jeremy@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'eyecarepeople@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                
+            ],
+            'us' => [
+                'globalvisionrehabcenter@gmail.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'juanm3@gmail.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'gmoheep@gmail.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'Michael.Le.od@gmail.com' => ['ANguye34@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'doc@brighteyestampa.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'oaadoc@gmail.com' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'citywideeye@gmail.com' => ['JPatino6@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
             ]
         ];
         $survey = [
@@ -21,8 +38,9 @@ class JnjOfficeSurveyController extends Controller
             2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/XWp/?id=' . $request->id
         ];
         $data = collect($request->all())->merge(['survey' => $survey[$request->survey], 'num' => $request->survey])->toArray();
-        Mail::to($request->a2_2 ?? $request->h2_2)->send(new SurveyCompleted($data));
-        $mails = $emails[$request->country];
+        $email = $request->a2_2 ?? $request->h2_2;
+        Mail::to($email)->send(new SurveyCompleted($data));
+        $mails = $emails[$request->country][$email] ?? collect($email[$request->country])->first();
         Mail::to($mails[0])->send(new SurveyCompleted($data));
         Mail::to($mails[1])->send(new SurveyCompleted($data));
         Mail::to($mails[2])->send(new SurveyCompleted($data));
