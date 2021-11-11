@@ -3,6 +3,7 @@
 use App\Http\Controllers\JnjOfficeSurveyController;
 use App\Http\Controllers\ProcessController;
 use App\Mail\EmailSent;
+use App\Mail\ParentCompleted;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -56,5 +57,9 @@ Route::get('/ecp/complete', [JnjOfficeSurveyController::class, 'sendEmail']);
 
 Route::get('/email-sent', function(Request $request) {
     Mail::to('crisjohnreytarpin@gmail.com')->send(new EmailSent($request->all()));
+    return redirect('https://www.seeyourabiliti.com');
+});
+Route::get('/parent-completed', function (Request $request) {
+    Mail::to('crisjohnreytarpin@gmail.com')->send(new ParentCompleted($request->all()));
     return redirect('https://www.seeyourabiliti.com');
 });
