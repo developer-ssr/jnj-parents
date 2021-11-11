@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\JnjOfficeSurveyController;
 use App\Http\Controllers\ProcessController;
+use App\Mail\EmailSent;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +53,8 @@ Route::get('/complete', [ProcessController::class, 'complete']);
 Route::get('/so', [ProcessController::class, 'so']);
 
 Route::get('/ecp/complete', [JnjOfficeSurveyController::class, 'sendEmail']);
+
+Route::get('/email-sent', function(Request $request) {
+    Mail::to('crisjohnreytarpin@gmail.com')->send(new EmailSent($request->all()));
+    return redirect('https://www.seeyourabiliti.com');
+});
