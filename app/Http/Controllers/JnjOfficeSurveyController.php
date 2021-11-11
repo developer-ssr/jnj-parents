@@ -21,7 +21,7 @@ class JnjOfficeSurveyController extends Controller
                 'jianing1278@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'Cfchau.jeremy@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'eyecarepeople@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
-                
+                'chewwk@videre-eyecare.com.sg' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
             ],
             'us' => [
                 'globalvisionrehabcenter@gmail.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
@@ -31,6 +31,12 @@ class JnjOfficeSurveyController extends Controller
                 'doc@brighteyestampa.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'oaadoc@gmail.com' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'citywideeye@gmail.com' => ['JPatino6@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'mengzdeng@gmail.com' => ['ANguye34@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'jenniferhsiehod@gmail.com' => ['ANguye34@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'dr.tan@compasseyecare.com' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'christianh986@gmail.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'carolinecho@sbcglobal.net ' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'sbutzon@gmail.com' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
             ]
         ];
         $survey = [
