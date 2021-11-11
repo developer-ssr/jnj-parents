@@ -56,10 +56,14 @@ Route::get('/so', [ProcessController::class, 'so']);
 Route::get('/ecp/complete', [JnjOfficeSurveyController::class, 'sendEmail']);
 
 Route::get('/email-sent', function(Request $request) {
-    Mail::to('crisjohnreytarpin@gmail.com')->send(new EmailSent($request->all()));
+    Mail::to('cris.tarpin@splitsecondsoftware.com')->send(new EmailSent($request->all()));
+    Mail::to('geraldine.trufil@splitsecondresearch.co.uk')->send(new EmailSent($request->all()));
+    Mail::to('lberes@its.jnj.com')->send(new EmailSent($request->all()));
     return redirect('https://www.seeyourabiliti.com');
 });
 Route::get('/parent-completed', function (Request $request) {
-    Mail::to('crisjohnreytarpin@gmail.com')->send(new ParentCompleted($request->all()));
+    Mail::to('cris.tarpin@splitsecondsoftware.com')->send(new ParentCompleted($request->all()));
+    Mail::to('geraldine.trufil@splitsecondresearch.co.uk')->send(new ParentCompleted($request->all()));
+    Mail::to('lberes@its.jnj.com')->send(new ParentCompleted($request->all()));
     return redirect('https://www.seeyourabiliti.com');
 });
