@@ -35,7 +35,7 @@ class JnjOfficeSurveyController extends Controller
                 'jenniferhsiehod@gmail.com' => ['ANguye34@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'dr.tan@compasseyecare.com' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'christianh986@gmail.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
-                'carolinecho@sbcglobal.net ' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'carolinecho@sbcglobal.net' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'sbutzon@gmail.com' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
             ]
         ];
