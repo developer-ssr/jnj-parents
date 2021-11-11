@@ -1,7 +1,7 @@
 @component('mail::message')
 # New parent participant
 
-Email: <code>{{ $email }}</code>
+Email: <code>{{ $email }}</code><br>
 Country: <code>{{ $country }}</code>
 
 Kind regards,<br>
