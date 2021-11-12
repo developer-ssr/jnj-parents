@@ -40,10 +40,17 @@ class JnjOfficeSurveyController extends Controller
             ]
         ];
         $survey = [
-            1 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/XWp/?id=' . $request->id,
-            2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/XWp/?id=' . $request->id
+            'us' => [
+                1 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/4fa/?id=' . $request->id,
+                2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/v8h/?id=' . $request->id
+            ],
+            'sg' => [
+                1 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/XWp/?id=' . $request->id,
+                2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/N8N/1?id' . $request->id
+            ]
         ];
-        $data = collect($request->all())->merge(['survey' => $survey[$request->survey], 'num' => $request->survey])->toArray();
+        $s = $survey[$request->country][$request->survey];
+        $data = collect($request->all())->merge(['survey' => $s, 'num' => $request->survey])->toArray();
         $email = $request->a2_2 ?? $request->h2_2;
         Mail::to($email)->send(new SurveyCompleted($data));
         $mails = $emails[$request->country][$email] ?? collect($email[$request->country])->first();
