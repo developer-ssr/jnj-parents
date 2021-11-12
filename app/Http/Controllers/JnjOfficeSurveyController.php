@@ -53,7 +53,7 @@ class JnjOfficeSurveyController extends Controller
         $data = collect($request->all())->merge(['survey' => $s, 'num' => $request->survey])->toArray();
         $email = $request->a2_2 ?? $request->h2_2;
         Mail::to($email)->send(new SurveyCompleted($data));
-        $mails = $emails[$request->country][$email] ?? collect($email[$request->country])->first();
+        $mails = $emails[$request->country][$email] ?? collect($emails[$request->country])->first();
         Mail::to($mails[0])->send(new SurveyCompleted($data));
         Mail::to($mails[1])->send(new SurveyCompleted($data));
         Mail::to($mails[2])->send(new SurveyCompleted($data));
