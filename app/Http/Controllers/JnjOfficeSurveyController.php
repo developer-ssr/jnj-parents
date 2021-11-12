@@ -46,7 +46,7 @@ class JnjOfficeSurveyController extends Controller
             ],
             'sg' => [
                 1 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/XWp/?id=' . $request->id,
-                2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/N8N/1?id' . $request->id
+                2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/N8N/?id' . $request->id
             ]
         ];
         $s = $survey[$request->country][$request->survey];
