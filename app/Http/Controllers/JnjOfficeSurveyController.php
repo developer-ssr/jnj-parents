@@ -22,6 +22,7 @@ class JnjOfficeSurveyController extends Controller
                 'Cfchau.jeremy@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'eyecarepeople@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'chewwk@videre-eyecare.com.sg' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'brianchungcp@gmail.com' => ['jchng@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk']
             ],
             'us' => [
                 'globalvisionrehabcenter@gmail.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
