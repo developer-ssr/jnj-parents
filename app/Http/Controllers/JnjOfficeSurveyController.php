@@ -38,6 +38,11 @@ class JnjOfficeSurveyController extends Controller
                 'christianh986@gmail.com' => ['AEvans1@its.jnj.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'carolinecho@sbcglobal.net' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'sbutzon@gmail.com' => ['ARahman4@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+            ],
+            'ca' => [
+                'vince@vcoptical.com' => ['ELee44@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'thakrarv@gmail.com' => ['ELee44@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
+                'crisjohnreytarpin@gmail.com' => ["iamcrisjohn@gmail.com", 'cris.tarpin@splitsecondsoftware.com', 'jnj@splitsecondresearch.co.uk']
             ]
         ];
         $survey = [
@@ -48,6 +53,10 @@ class JnjOfficeSurveyController extends Controller
             'sg' => [
                 1 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/XWp/?id=' . $request->id,
                 2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/N8N/?id' . $request->id
+            ],
+            'ca' => [
+                1 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/5Ph/?id=' . $request->id,
+                2 => 'https://fluent.splitsecondsurveys.co.uk/engine/entry/Mam/?id=' . $request->id
             ]
         ];
         $s = $survey[$request->country][$request->survey];
