@@ -42,7 +42,8 @@ class JnjOfficeSurveyController extends Controller
             'ca' => [
                 'vince@vcoptical.com' => ['ELee44@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
                 'thakrarv@gmail.com' => ['ELee44@ITS.JNJ.com', 'LBeres@ITS.JNJ.com', 'jnj@splitsecondresearch.co.uk'],
-                'crisjohnreytarpin@gmail.com' => ["iamcrisjohn@gmail.com", 'cris.tarpin@splitsecondsoftware.com', 'jnj@splitsecondresearch.co.uk']
+                'crisjohnreytarpin@gmail.com' => ["iamcrisjohn@gmail.com", 'cris.tarpin@splitsecondsoftware.com', 'jnj@splitsecondresearch.co.uk'],
+                'geraldine.trufil@splitsecondresearch.co.uk' => ["iamcrisjohn@gmail.com", 'cris.tarpin@splitsecondsoftware.com', 'jnj@splitsecondresearch.co.uk']
             ]
         ];
         $survey = [
