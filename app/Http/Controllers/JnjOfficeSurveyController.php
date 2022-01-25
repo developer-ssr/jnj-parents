@@ -68,6 +68,21 @@ class JnjOfficeSurveyController extends Controller
         Mail::to($mails[0])->send(new SurveyCompleted($data));
         Mail::to($mails[1])->send(new SurveyCompleted($data));
         Mail::to($mails[2])->send(new SurveyCompleted($data));
-        return redirect("https://www.seeyourabiliti.com/professionals");
+        
+        $redirect = "https://www.seeyourabiliti.com/professionals";
+
+        switch ($country) {
+            case 'sg':
+                $redirect = "https://www.seeyourabiliti.com/sg/professionals";
+                break;
+            case 'ca':
+                $redirect = "https://www.seeyourabiliti.com/ca/professionals";
+                break;
+            case 'hk':
+                $redirect = "https://www.seeyourabiliti.com/hk/professionals";
+                break;
+
+        }
+        return redirect($redirect);
     }
 }
