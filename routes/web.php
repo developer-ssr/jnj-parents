@@ -57,20 +57,41 @@ Route::get('/so', [ProcessController::class, 'so']);
 Route::get('/ecp/complete', [JnjOfficeSurveyController::class, 'sendEmail']);
 
 Route::get('/email-sent', function(Request $request) {
+    $redirects = [
+        'ca' => 'https://www.seeyourabiliti.com/ca',
+        'us' => 'https://www.seeyourabiliti.com',
+        'hk' => 'https://www.seeyourabiliti.com/hk',
+        'sg' => 'https://www.seeyourabiliti.com/sg'
+    ];
     Mail::to('cris.tarpin@splitsecondsoftware.com')->send(new EmailSent($request->all()));
     Mail::to('geraldine.trufil@splitsecondresearch.co.uk')->send(new EmailSent($request->all()));
     // Mail::to('lberes@its.jnj.com')->send(new EmailSent($request->all()));
-    return redirect('https://www.seeyourabiliti.com');
+    $country = $request->country ?? 'us';
+    return redirect($redirects[$country]);
 });
 Route::get('/parent-completed', function (Request $request) {
+    $redirects = [
+        'ca' => 'https://www.seeyourabiliti.com/ca',
+        'us' => 'https://www.seeyourabiliti.com',
+        'hk' => 'https://www.seeyourabiliti.com/hk',
+        'sg' => 'https://www.seeyourabiliti.com/sg'
+    ];
     Mail::to('cris.tarpin@splitsecondsoftware.com')->send(new ParentCompleted($request->all()));
     Mail::to('geraldine.trufil@splitsecondresearch.co.uk')->send(new ParentCompleted($request->all()));
     // Mail::to('lberes@its.jnj.com')->send(new ParentCompleted($request->all()));
-    return redirect('https://www.seeyourabiliti.com');
+    $country = $request->country ?? 'us';
+    return redirect($redirects[$country]);
 });
 
 Route::get('/lacking', function(Request $request) {
+    $redirects = [
+        'ca' => 'https://www.seeyourabiliti.com/ca',
+        'us' => 'https://www.seeyourabiliti.com',
+        'hk' => 'https://www.seeyourabiliti.com/hk',
+        'sg' => 'https://www.seeyourabiliti.com/sg'
+    ];
     Mail::to('cris.tarpin@splitsecondsoftware.com')->send(new ParentScheduleToSurvey($request->all()));
     Mail::to('geraldine.trufil@splitsecondresearch.co.uk')->send(new ParentScheduleToSurvey($request->all()));
-    return redirect('https://www.seeyourabiliti.com');
+    $country = $request->country ?? 'us';
+    return redirect($redirects[$country]);
 });
