@@ -1,5 +1,5 @@
 @component('mail::message')
-# A parent participant hasn't reach the two weeks used of Abiliti
+# A parent participant have not reached the 10 days threshold of using Abiliti
 
 Email: <code>{{ $email }}</code><br>
 Country: <code>{{ $country }}</code><br>
