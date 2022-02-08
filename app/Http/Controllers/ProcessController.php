@@ -16,17 +16,23 @@ class ProcessController extends Controller
 
     private $step2_links = [
         'sg' => 'V84',
-        'us' => 'nh1'
+        'us' => 'nh1',
+        'ca' => '9Ub',
+        'hk' => 'Mxg'
     ];
 
     private $step1_links = [
         'sg' => 'FKC',
-        'us' => 'Sm8'
+        'us' => 'Sm8',
+        'ca' => 'wUy',
+        'hk' => 'cTA'
     ];
 
     private $step3_links = [
-        'sg' => '',
-        'us' => '4NL'
+        'sg' => 'I3n',
+        'us' => '4NL',
+        'ca' => 'xJx',
+        'hk' => 'pZH'
     ];
 
     public function index(Request $request)
