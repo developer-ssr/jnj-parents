@@ -30,7 +30,9 @@ class ParentCompleted extends Mailable
     {
         $country = [
             'us' => 'United States of America',
-            'sg' => 'Singapore'
+            'sg' => 'Singapore',
+            'ca' => 'Canada',
+            'hk' => 'Hongkong'
         ];
         return $this->markdown('emails.survey.parentcompleted')
             ->subject("J&J")
