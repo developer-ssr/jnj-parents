@@ -4,6 +4,7 @@ use App\Http\Controllers\JnjOfficeSurveyController;
 use App\Http\Controllers\ProcessController;
 use App\Mail\EmailSent;
 use App\Mail\ParentCompleted;
+use App\Mail\ParentScheduleToSurvey;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -65,5 +66,11 @@ Route::get('/parent-completed', function (Request $request) {
     Mail::to('cris.tarpin@splitsecondsoftware.com')->send(new ParentCompleted($request->all()));
     Mail::to('geraldine.trufil@splitsecondresearch.co.uk')->send(new ParentCompleted($request->all()));
     // Mail::to('lberes@its.jnj.com')->send(new ParentCompleted($request->all()));
+    return redirect('https://www.seeyourabiliti.com');
+});
+
+Route::get('/lacking', function(Request $request) {
+    Mail::to('cris.tarpin@splitsecondsoftware.com')->send(new ParentScheduleToSurvey($request->all()));
+    Mail::to('geraldine.trufil@splitsecondresearch.co.uk')->send(new ParentScheduleToSurvey($request->all()));
     return redirect('https://www.seeyourabiliti.com');
 });
