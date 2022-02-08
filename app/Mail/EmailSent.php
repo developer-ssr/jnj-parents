@@ -47,7 +47,7 @@ class EmailSent extends Mailable
             ->with([
                 'email' => $this->data['q1'],
                 'country' => $country[$this->data['country']],
-                'link' => $links[$this->data['country']] . http_build_query(['email' => $this->data['q1']])
+                'link' => $links[$this->data['country']] . http_build_query(['email' => $this->data['q1'], 'country' => $this->data['country']])
             ]);
     }
 }
