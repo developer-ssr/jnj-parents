@@ -64,6 +64,6 @@ Route::get('/email-sent', function(Request $request) {
 Route::get('/parent-completed', function (Request $request) {
     Mail::to('cris.tarpin@splitsecondsoftware.com')->send(new ParentCompleted($request->all()));
     Mail::to('geraldine.trufil@splitsecondresearch.co.uk')->send(new ParentCompleted($request->all()));
-    Mail::to('lberes@its.jnj.com')->send(new ParentCompleted($request->all()));
+    // Mail::to('lberes@its.jnj.com')->send(new ParentCompleted($request->all()));
     return redirect('https://www.seeyourabiliti.com');
 });
