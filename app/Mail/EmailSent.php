@@ -31,12 +31,16 @@ class EmailSent extends Mailable
     {
         $country = [
             'us' => 'United States of America',
-            'sg' => 'Singapore'
+            'sg' => 'Singapore',
+            'hk' => 'Hongkong',
+            'ca' => 'Canada'
         ];
 
         $links = [
             'us' => "https://fluent.splitsecondsurveys.co.uk/engine/entry/nh1/1?",
-            'sg' => "https://fluent.splitsecondsurveys.co.uk/engine/entry/V84/1?"
+            'sg' => "https://fluent.splitsecondsurveys.co.uk/engine/entry/V84/1?",
+            'hk' => "https://fluent.splitsecondsurveys.co.uk/engine/entry/Mxg/1?",
+            'ca' => "https://fluent.splitsecondsurveys.co.uk/engine/entry/9Ub/1?"
         ];
         return $this->markdown('emails.survey.email')
             ->subject("J&J")
