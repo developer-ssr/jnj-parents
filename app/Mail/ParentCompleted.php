@@ -35,7 +35,7 @@ class ParentCompleted extends Mailable
             'hk' => 'Hongkong'
         ];
         return $this->markdown('emails.survey.parentcompleted')
-            ->subject("J&J")
+            ->subject("J&J - Parent Completed")
             ->with([
                 'email' => $this->data['email'],
                 'country' => $country[$this->data['country']],

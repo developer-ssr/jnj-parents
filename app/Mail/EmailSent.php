@@ -43,7 +43,7 @@ class EmailSent extends Mailable
             'ca' => "https://fluent.splitsecondsurveys.co.uk/engine/entry/9Ub/1?"
         ];
         return $this->markdown('emails.survey.email')
-            ->subject("J&J")
+            ->subject("J&J - New Parent")
             ->with([
                 'email' => $this->data['q1'],
                 'country' => $country[$this->data['country']],
